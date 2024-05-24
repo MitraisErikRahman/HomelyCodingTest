@@ -1,17 +1,19 @@
-using System;
-using System.Linq;
 using API.Core;
 using API.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
 using static API.Core.Models.Enums;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize(AuthenticationSchemes = "ApiKey")]
     public class ListingsController : ControllerBase
     {
         private readonly ILogger<ListingsController> _logger;
@@ -24,8 +26,7 @@ namespace API.Controllers
             _configuration = config;
         }
 
-        [HttpGet("")]
-        [Route("")]
+        [HttpGet]
         public IActionResult GetListings(string suburb, CategoryType categoryType = CategoryType.None, StatusType statusType = StatusType.None, int skip = 0, int take = 10)
         {
             if (string.IsNullOrEmpty(suburb))
