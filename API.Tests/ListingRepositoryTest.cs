@@ -1,35 +1,37 @@
-using API.Core;
-using Microsoft.Extensions.Configuration;
-using Xunit;
 using API.Core.Models;
+using API.Core.Repositories;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Xunit;
 
 namespace API.Tests
 {
-    public class ListManagerTest
+    public class ListingRepositoryTest
     {
         private IConfiguration _configuration;
+        private ILogger<ListingRepository> _logger;
 
         [Fact]
-        public void GetResidentialListings()
+        public void GetResidentialListings_ListingsFound_ReturnListings()
         {
             _configuration = GetConfiguration();
             string subsurb = "Southbank";
 
-            var listmanager = new ListManager(_configuration);
+            var listingRepository = new ListingRepository(_configuration, _logger);
 
-            var results = listmanager.GetListings(subsurb, Enums.CategoryType.Residential, Enums.StatusType.Current, 0, 50);
+            var results = listingRepository.GetListings(subsurb, Enums.CategoryType.Residential, Enums.StatusType.Current, 0, 50);
             Assert.NotNull(results);
         }
 
         [Fact]
-        public void GetRentalListings()
+        public void GetRentalListings_ListingsFound_ReturnListings()
         {
             _configuration = GetConfiguration();
             string subsurb = "Kew";
 
-            var listmanager = new ListManager(_configuration);
+            var listingRepository = new ListingRepository(_configuration, _logger);
 
-            var results = listmanager.GetListings(subsurb, Enums.CategoryType.Rental, Enums.StatusType.Current, 0, 50);
+            var results = listingRepository.GetListings(subsurb, Enums.CategoryType.Rental, Enums.StatusType.Current, 0, 50);
             Assert.NotNull(results);
         }
 

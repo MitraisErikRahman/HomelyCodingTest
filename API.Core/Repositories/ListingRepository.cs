@@ -3,23 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Core.Custom;
+using API.Core.Interfaces;
 using API.Core.Models;
 using Dapper;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using static API.Core.Models.Enums;
 
-namespace API.Core
+namespace API.Core.Repositories
 {
-    public class ListManager : IListManager
+    public class ListingRepository : IListingRepository
     {
+        private readonly ILogger<ListingRepository> _logger;
         private readonly IConfiguration _configuration;
 
-        public ListManager(IConfiguration config)
+        /// <summary>
+        /// Listing repository class constructor
+        /// </summary>
+        /// <param name="config">Configuration interface dependency injection</param>
+        /// <param name="logger">Logger  interface dependency injection</param>
+        public ListingRepository(IConfiguration config, ILogger<ListingRepository> logger)
         { 
             _configuration = config;
+            _logger = logger;
         }
-        public PagedResult<Listing> GetListings(string suburb, CategoryType categoryType, StatusType statusType, int skip, int take)
+
+        /// <summary>
+        /// A repository method to get listings
+        /// </summary>
+        /// <param name="suburb">Suburb</param>
+        /// <param name="categoryType">Category type</param>
+        /// <param name="statusType">Status type</param>
+        /// <param name="skip">Skip</param>
+        /// <param name="take">How many records to take</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Listing>> GetListings(string suburb, CategoryType categoryType, StatusType statusType, int skip, int take)
         {            
+            _logger.LogInformation($"GetListings method in Listing repository called");
             var listings = new List<Listing>();
             var total = 0;
 
@@ -48,9 +68,13 @@ namespace API.Core
             }
 
             if (total == 0)
+            {
+                _logger.LogInformation($"Listing not found");
                 return null;
+            }
 
-            return new PagedResult<Listing>(skip, total, listings);            
+            _logger.LogInformation($"Listing found");
+            return listings;
         }
     }
 }

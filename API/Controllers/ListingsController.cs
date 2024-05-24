@@ -1,39 +1,40 @@
-using System;
-using System.Linq;
 using API.Core;
 using API.Core.Models;
+using API.Service.DTOs;
+using API.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using static API.Core.Models.Enums;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize(AuthenticationSchemes = "ApiKey")]
     public class ListingsController : ControllerBase
     {
         private readonly ILogger<ListingsController> _logger;
-        private readonly IConfiguration _configuration;
-        private IListManager _listManager;
+        private readonly IListingService _listingService;
 
-        public ListingsController(ILogger<ListingsController> logger, IConfiguration config)
+        public ListingsController(ILogger<ListingsController> logger, IListingService listingService)
         {
             _logger = logger;
-            _configuration = config;
+            _listingService = listingService;
         }
 
-        [HttpGet("")]
-        [Route("")]
-        public IActionResult GetListings(string suburb, CategoryType categoryType = CategoryType.None, StatusType statusType = StatusType.None, int skip = 0, int take = 10)
+        [HttpGet]
+        public async Task<IActionResult> GetListings(string suburb, CategoryType categoryType = CategoryType.None, StatusType statusType = StatusType.None, int skip = 0, int take = 10)
         {
-            if (string.IsNullOrEmpty(suburb))
-                return BadRequest("No Suburb provided");
+            _logger.LogInformation($"GetListings method in Listing controller called");
+            if (string.IsNullOrEmpty(suburb)) return BadRequest("No Suburb provided");
 
-            _listManager = new ListManager(_configuration);
-
-            PagedResult<Listing> listings = _listManager.GetListings(suburb, categoryType, statusType, skip, take);
+            PagedResult<ListingDTO> listings = await _listingService.GetListings(suburb, categoryType, statusType, skip, take);
 
             if (listings != null && listings.Results != null)
             {
