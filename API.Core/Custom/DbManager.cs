@@ -8,37 +8,58 @@ namespace API.Core.Custom
 {
     public class DbManager : IDbManager
     {
+        #region Variables Declaration
         private readonly string _connectionString;
         private readonly IConfiguration _configuration;
+        #endregion
 
-        public DbManager(EnumDB Name, DbAccessLevel AccessLevel, IConfiguration config)
+        #region Constructors
+        /// <summary>
+        /// DBManager class constructor
+        /// </summary>
+        /// <param name="name">Database name</param>
+        /// <param name="accessLevel">Database access level</param>
+        /// <param name="configuration">Configuration interface</param>
+        public DbManager(EnumDB name, DbAccessLevel accessLevel, IConfiguration configuration)
         {
-            _configuration = config;
-            var sb = new StringBuilder();
-            sb.Append(Name.ToString());
+            _configuration = configuration;
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(name.ToString());
 
-            if (AccessLevel == DbAccessLevel.WRITE)
+            if (accessLevel == DbAccessLevel.WRITE)
             {
-                sb.Append("Write");
+                stringBuilder.Append("Write");
             }
             else
             {
-                sb.Append("Read");
+                stringBuilder.Append("Read");
             }
-            _connectionString = ConfigurationExtensions.GetConnectionString(config, sb.ToString()).ToString();
-        }
 
+            _connectionString = ConfigurationExtensions.GetConnectionString(configuration, stringBuilder.ToString()).ToString();
+        }
+        #endregion
+
+        #region Public Methods
+        /// <summary>
+        /// Get database connection
+        /// </summary>
+        /// <returns></returns>
         public IDbConnection GetConnection()
         {
-            var conn = new SqlConnection(_connectionString);
-            return conn;
+            var sqlConnection = new SqlConnection(_connectionString);
+            return sqlConnection;
         }
 
+        /// <summary>
+        /// Open database connection
+        /// </summary>
+        /// <returns></returns>
         public IDbConnection GetOpenConnection()
         {
-            var conn = GetConnection();
-            conn.Open();
-            return conn;
-        }
+            var sqlConnection = GetConnection();
+            sqlConnection.Open();
+            return sqlConnection;
+        } 
+        #endregion
     }
 }

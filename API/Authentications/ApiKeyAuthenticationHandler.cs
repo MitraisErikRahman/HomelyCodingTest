@@ -11,13 +11,30 @@ namespace API.Authentications
 {
     public class ApiKeyAuthenticationHandler : AuthenticationHandler<ApiKeyAuthenticationOptions>
     {
+        #region Variables Declaration
         private readonly IConfiguration _configuration;
-        public ApiKeyAuthenticationHandler(IOptionsMonitor<ApiKeyAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IConfiguration config)
-        : base(options, logger, encoder, clock)
-        {
-            _configuration = config;
-        }
+        #endregion
 
+        #region Constructors
+        /// <summary>
+        /// ApiKeyAuthenticationHandler class constructor
+        /// </summary>
+        /// <param name="options">Options monitor interface</param>
+        /// <param name="logger">Loffer factory interface</param>
+        /// <param name="encoder">Url encoder</param>
+        /// <param name="clock">System clock interface</param>
+        /// <param name="configuration">Configuration interface</param>
+        public ApiKeyAuthenticationHandler(IOptionsMonitor<ApiKeyAuthenticationOptions> options,
+            ILoggerFactory logger,
+            UrlEncoder encoder,
+            ISystemClock clock,
+            IConfiguration configuration) : base(options, logger, encoder, clock)
+        {
+            _configuration = configuration;
+        }
+        #endregion
+
+        #region Protected Methods
         /// <summary>
         /// Overrides the HandleAuthenticateAsync method
         /// </summary>
@@ -44,6 +61,7 @@ namespace API.Authentications
             var ticket = new AuthenticationTicket(principal, Scheme.Name);
 
             return AuthenticateResult.Success(ticket);
-        }
+        } 
+        #endregion
     }
 }

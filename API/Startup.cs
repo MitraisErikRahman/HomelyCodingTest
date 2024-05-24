@@ -13,23 +13,32 @@ namespace API
 {
     public class Startup
     {
+        #region Variables Declaration
+        public IConfiguration Configuration { get; }
+        #endregion
+
+        #region Constructors
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+        #endregion
 
-        public IConfiguration Configuration { get; }
-
+        #region Public Methods
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             // Add authentication config
             services.AddAuthentication("ApiKey").AddScheme<ApiKeyAuthenticationOptions, ApiKeyAuthenticationHandler>("ApiKey", null);
+
             services.AddControllers();
+
             // Add auto mapper config
             services.AddAutoMapper(typeof(Program));
+
             // Add a scoped service
             services.AddScoped<IListingRepository, ListingRepository>();
+
             // Add a scoped repository
             services.AddScoped<IListingService, ListingService>();
         }
@@ -56,6 +65,7 @@ namespace API
 
             // initialise Dapper Fluent mappings
             API.Core.Startup.Register();
-        }
+        } 
+        #endregion
     }
 }
