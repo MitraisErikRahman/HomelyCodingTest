@@ -8,50 +8,61 @@ namespace API.Service.DTOs
     public class ListingDTO
     {
         public int ListingId { get; set; }
+
         [JsonIgnore]
         public string StreetNumber { get; set; }
+
         [JsonIgnore]
         public string Street { get; set; }
+
         [JsonIgnore]
         public string Suburb { get; set; }
+
         [JsonIgnore]
         public string State { get; set; }
+
         [JsonIgnore]
         public int Postcode { get; set; }
+
         public string Address
         {
             get
             {
-                var addr = new StringBuilder();
+                var address = new StringBuilder();
                 if (!string.IsNullOrEmpty(StreetNumber))
-                    addr = addr.Append(StreetNumber + " ");
+                    address = address.Append(StreetNumber + " ");
 
                 if (!string.IsNullOrEmpty(Street))
-                    addr = addr.Append(Street + ", ");
+                    address = address.Append(Street + ", ");
 
                 if (!string.IsNullOrEmpty(Suburb))
-                    addr = addr.Append(Suburb + " ");
+                    address = address.Append(Suburb + " ");
 
                 if (!string.IsNullOrEmpty(State))
-                    addr = addr.Append(State + " ");
+                    address = address.Append(State + " ");
 
                 if (Postcode != 0)
-                    addr = addr.Append(Postcode.ToString());
+                    address = address.Append(Postcode.ToString());
 
-                return addr.ToString();
+                return address.ToString();
             }
         }
+
         public CategoryType CategoryType { get; set; }
+
         public StatusType StatusType { get; set; }
+
         public string DisplayPrice { get; set; }
+
         public string ShortPrice
         {
             get
             {
-                var res = string.IsNullOrEmpty(DisplayPrice) ? null : Helper.FormatNumber(string.Concat(DisplayPrice.Trim().Where(x => char.IsDigit(x) || char.IsWhiteSpace(x))));
-                return string.IsNullOrEmpty(res) ? string.Empty : "$" + res;
+                var result = string.IsNullOrEmpty(DisplayPrice) ? null : Helper.FormatNumber(string.Concat(DisplayPrice.Trim().Where(x => char.IsDigit(x) || char.IsWhiteSpace(x))));
+                return string.IsNullOrEmpty(result) ? string.Empty : "$" + result;
             }
         }
+
         public string Title { get; set; }
     }
 }

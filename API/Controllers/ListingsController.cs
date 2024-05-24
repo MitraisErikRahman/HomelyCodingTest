@@ -19,15 +19,20 @@ namespace API.Controllers
     [Authorize(AuthenticationSchemes = "ApiKey")]
     public class ListingsController : ControllerBase
     {
+        #region  Variables Declaration
         private readonly ILogger<ListingsController> _logger;
         private readonly IListingService _listingService;
+        #endregion
 
+        #region Constructors
         public ListingsController(ILogger<ListingsController> logger, IListingService listingService)
         {
             _logger = logger;
             _listingService = listingService;
         }
+        #endregion
 
+        #region Public Methods
         [HttpGet]
         public async Task<IActionResult> GetListings(string suburb, CategoryType categoryType = CategoryType.None, StatusType statusType = StatusType.None, int skip = 0, int take = 10)
         {
@@ -49,6 +54,7 @@ namespace API.Controllers
             }
 
             return NotFound();
-        }
+        } 
+        #endregion
     }
 }

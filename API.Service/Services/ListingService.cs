@@ -9,10 +9,13 @@ namespace API.Service.Services
 {
     public class ListingService : IListingService
     {
+        #region Variables Declaration
         private readonly ILogger<ListingService> _logger;
         private readonly IListingRepository _listingRepository;
         private readonly IMapper _mapper;
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Listing service class constructor
         /// </summary>
@@ -25,7 +28,9 @@ namespace API.Service.Services
             _mapper = mapper;
             _logger = logger;
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// A service method to get listings
         /// </summary>
@@ -47,6 +52,7 @@ namespace API.Service.Services
 
             var listingDTO = _mapper.Map<IEnumerable<ListingDTO>>(listing);
             return new PagedResult<ListingDTO>(skip, total, listingDTO);
-        }
+        } 
+        #endregion
     }
 }

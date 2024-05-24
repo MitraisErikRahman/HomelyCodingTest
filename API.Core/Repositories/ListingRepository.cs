@@ -14,20 +14,25 @@ namespace API.Core.Repositories
 {
     public class ListingRepository : IListingRepository
     {
+        #region Variables Declaration
         private readonly ILogger<ListingRepository> _logger;
         private readonly IConfiguration _configuration;
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Listing repository class constructor
         /// </summary>
-        /// <param name="config">Configuration interface dependency injection</param>
+        /// <param name="configuration">Configuration interface dependency injection</param>
         /// <param name="logger">Logger  interface dependency injection</param>
-        public ListingRepository(IConfiguration config, ILogger<ListingRepository> logger)
-        { 
-            _configuration = config;
+        public ListingRepository(IConfiguration configuration, ILogger<ListingRepository> logger)
+        {
+            _configuration = configuration;
             _logger = logger;
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// A repository method to get listings
         /// </summary>
@@ -38,33 +43,33 @@ namespace API.Core.Repositories
         /// <param name="take">How many records to take</param>
         /// <returns></returns>
         public async Task<IEnumerable<Listing>> GetListings(string suburb, CategoryType categoryType, StatusType statusType, int skip, int take)
-        {            
+        {
             _logger.LogInformation($"GetListings method in Listing repository called");
             var listings = new List<Listing>();
             var total = 0;
 
-            var filter = categoryType != CategoryType.None ? $" AND CategoryType = {(int)categoryType } " : string.Empty;
-            filter = statusType != StatusType.None ? filter + $" AND StatusType = {(int)statusType } " : string.Empty;
+            var filter = categoryType != CategoryType.None ? $" AND CategoryType = {(int)categoryType} " : string.Empty;
+            filter = statusType != StatusType.None ? filter + $" AND StatusType = {(int)statusType} " : string.Empty;
 
-            var sql = $@" SELECT count(ListingId) FROM [Backend-TakeHomeExercise].dbo.Listings WITH(NOLOCK)
-                                WHERE Suburb = @suburb { filter} ;
+            var sqlCommandText = $@" SELECT count(ListingId) FROM [Backend-TakeHomeExercise].dbo.Listings WITH(NOLOCK)
+                                WHERE Suburb = @suburb {filter} ;
 
                                 SELECT ListingId, StreetNumber, Street, Suburb, State, Postcode, DisplayPrice, Title, CategoryType, StatusType
                                 FROM [Backend-TakeHomeExercise].dbo.Listings WITH(NOLOCK)
-                                WHERE Suburb = @suburb { filter} 
+                                WHERE Suburb = @suburb {filter} 
                                 ORDER BY ListingId
                                 OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY ;
                             ";
-                            
+
             var dbManager = new DbManager(EnumDB.TEST, DbAccessLevel.READ, _configuration);
 
-            using (var db = dbManager.GetOpenConnection())
+            using (var dbConnection = dbManager.GetOpenConnection())
             {
-                var cmd = new CommandDefinition(sql, new { suburb, cattype = (int)categoryType, statusType = (int)statusType, skip, take });
-                var multi = db.QueryMultiple(cmd);
+                var sqlCommand = new CommandDefinition(sqlCommandText, new { suburb, categoryType = (int)categoryType, statusType = (int)statusType, skip, take });
+                var queryMultiple = dbConnection.QueryMultiple(sqlCommand);
 
-                total = multi.Read<int>().FirstOrDefault();
-                listings = multi.Read<Listing>().ToList();
+                total = queryMultiple.Read<int>().FirstOrDefault();
+                listings = queryMultiple.Read<Listing>().ToList();
             }
 
             if (total == 0)
@@ -75,6 +80,7 @@ namespace API.Core.Repositories
 
             _logger.LogInformation($"Listing found");
             return listings;
-        }
+        } 
+        #endregion
     }
 }

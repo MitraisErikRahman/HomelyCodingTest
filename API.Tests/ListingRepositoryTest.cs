@@ -8,9 +8,12 @@ namespace API.Tests
 {
     public class ListingRepositoryTest
     {
+        #region Variables Declaration
         private IConfiguration _configuration;
         private ILogger<ListingRepository> _logger;
+        #endregion
 
+        #region Public Methods
         [Fact]
         public void GetResidentialListings_ListingsFound_ReturnListings()
         {
@@ -44,6 +47,7 @@ namespace API.Tests
             }
 
             return _configuration;
-        }
+        } 
+        #endregion
     }
 }
