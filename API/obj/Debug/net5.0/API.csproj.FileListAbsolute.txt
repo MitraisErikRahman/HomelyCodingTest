@@ -1,0 +1,76 @@
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\appsettings.Development.json
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\appsettings.json
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\API.exe
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\API.deps.json
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\API.runtimeconfig.json
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\API.runtimeconfig.dev.json
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\API.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\ref\API.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\API.pdb
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\Dapper.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\Dapper.FluentMap.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\System.Data.SqlClient.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\API.Core.dll
+C:\Projects\Backend Code Review\Code review\API\bin\Debug\net5.0\API.Core.pdb
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.csprojAssemblyReference.cache
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.AssemblyInfoInputs.cache
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.AssemblyInfo.cs
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.csproj.CoreCompileInputs.cache
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cache
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.Manifest.cache
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.xml
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\scopedcss\bundle\API.styles.css
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.RazorTargetAssemblyInfo.cache
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.csproj.CopyComplete
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.dll
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\ref\API.dll
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.pdb
+C:\Projects\Backend Code Review\Code review\API\obj\Debug\net5.0\API.genruntimeconfig.cache
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\appsettings.Development.json
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\appsettings.json
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\API.exe
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\API.deps.json
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\API.runtimeconfig.json
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\API.runtimeconfig.dev.json
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\API.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\ref\API.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\API.pdb
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\Dapper.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\Dapper.FluentMap.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\System.Data.SqlClient.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\API.Core.dll
+C:\Projects\Backend Code Review\src\API\bin\Debug\net5.0\API.Core.pdb
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.csprojAssemblyReference.cache
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.AssemblyInfoInputs.cache
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.AssemblyInfo.cs
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.csproj.CoreCompileInputs.cache
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cache
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.Manifest.cache
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.xml
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\scopedcss\bundle\API.styles.css
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.RazorTargetAssemblyInfo.cache
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.csproj.CopyComplete
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.dll
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\ref\API.dll
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.pdb
+C:\Projects\Backend Code Review\src\API\obj\Debug\net5.0\API.genruntimeconfig.cache
