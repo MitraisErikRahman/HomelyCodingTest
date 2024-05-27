@@ -6,6 +6,7 @@ using API.Service.Responses;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using static API.Core.Models.Enums;
 
 namespace API.Service.Services
 {
@@ -47,32 +48,41 @@ namespace API.Service.Services
             _logger.LogInformation($"GetListings method in Listing service called");
             ReturnResponse returnResponse = new ReturnResponse();
 
-            if (string.IsNullOrEmpty(suburb))
-            {
-                returnResponse.Message = "No Suburb provided";
-                return returnResponse;
+            try
+            {               
+                if (string.IsNullOrEmpty(suburb))
+                {
+                    returnResponse.StatusCode = (int)StatusCode.Status200OK;
+                    returnResponse.Message = "No Suburb provided";
+                    return returnResponse;
+                }
+
+                var listing = await _listingRepository.GetListings(suburb, categoryType, statusType, skip, take);
+
+                var total = 0;
+                if (listing != null) total = listing.Count();
+
+                var listingDTO = _mapper.Map<IEnumerable<ListingDTO>>(listing);
+
+                if (total == 0)
+                {
+                    returnResponse.StatusCode = (int)StatusCode.Status404NotFound;
+                    returnResponse.Message = "No results";
+                }
+                else
+                {
+                    var pagedResult = new PagedResult<ListingDTO>(skip, total, listingDTO);
+                    returnResponse.StatusCode = (int)StatusCode.Status200OK;
+                    returnResponse.Message = "Data found";
+                    returnResponse.Result = JsonConvert.SerializeObject(pagedResult);
+                }
             }
-
-            var listing = await _listingRepository.GetListings(suburb, categoryType, statusType, skip, take);
-
-            var total = 0;
-            if (listing != null) total = listing.Count();
-
-            var listingDTO = _mapper.Map<IEnumerable<ListingDTO>>(listing);
-
-            string result = string.Empty;
-            if (total == 0)
+            catch (Exception ex)
             {
-                returnResponse.Message = "No results";
+                returnResponse.StatusCode = (int)StatusCode.Status500InternalServerError;
+                returnResponse.Message = ex.Message;
             }
-            else
-            {
-                var pagedResult = new PagedResult<ListingDTO>(skip, total, listingDTO);
-                result = JsonConvert.SerializeObject(pagedResult);
-                returnResponse.Message = "Data found";
-                returnResponse.Result = result;
-            }
-
+            
             return returnResponse;
         } 
         #endregion

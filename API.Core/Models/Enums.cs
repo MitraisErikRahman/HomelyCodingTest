@@ -42,5 +42,12 @@ namespace API.Core.Models
             /// </summary>
             WRITE
         }
+
+        public enum StatusCode
+        {
+            Status200OK = 200,
+            Status404NotFound = 404,
+            Status500InternalServerError = 500
+        }
     }
 }
