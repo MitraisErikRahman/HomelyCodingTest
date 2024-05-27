@@ -2,8 +2,10 @@
 using API.Core.Models;
 using API.Service.DTOs;
 using API.Service.Interfaces;
+using API.Service.Responses;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace API.Service.Services
 {
@@ -40,18 +42,38 @@ namespace API.Service.Services
         /// <param name="skip">Skip</param>
         /// <param name="take">How many records to take</param>
         /// <returns></returns>
-        public async Task<PagedResult<ListingDTO>> GetListings(string suburb, Enums.CategoryType categoryType, Enums.StatusType statusType, int skip, int take)
+        public async Task<ReturnResponse> GetListings(string suburb, Enums.CategoryType categoryType, Enums.StatusType statusType, int skip, int take)
         {
             _logger.LogInformation($"GetListings method in Listing service called");
+            ReturnResponse returnResponse = new ReturnResponse();
+
+            if (string.IsNullOrEmpty(suburb))
+            {
+                returnResponse.Message = "No Suburb provided";
+                return returnResponse;
+            }
+
             var listing = await _listingRepository.GetListings(suburb, categoryType, statusType, skip, take);
 
-            if (listing == null) return null;
-
-            var total = listing.Count();
-            if (total == 0) return null;
+            var total = 0;
+            if (listing != null) total = listing.Count();
 
             var listingDTO = _mapper.Map<IEnumerable<ListingDTO>>(listing);
-            return new PagedResult<ListingDTO>(skip, total, listingDTO);
+
+            string result = string.Empty;
+            if (total == 0)
+            {
+                returnResponse.Message = "No results";
+            }
+            else
+            {
+                var pagedResult = new PagedResult<ListingDTO>(skip, total, listingDTO);
+                result = JsonConvert.SerializeObject(pagedResult);
+                returnResponse.Message = "Data found";
+                returnResponse.Result = result;
+            }
+
+            return returnResponse;
         } 
         #endregion
     }

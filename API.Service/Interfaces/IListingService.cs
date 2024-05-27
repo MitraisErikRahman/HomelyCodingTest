@@ -1,5 +1,6 @@
 ﻿using API.Core.Models;
 using API.Service.DTOs;
+using API.Service.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,6 @@ namespace API.Service.Interfaces
         /// <param name="skip">Skip</param>
         /// <param name="take">How many records to take</param>
         /// <returns></returns>
-        Task<PagedResult<ListingDTO>> GetListings(string suburb, CategoryType categoryType, StatusType statusType, int skip, int take);
+        Task<ReturnResponse> GetListings(string suburb, CategoryType categoryType, StatusType statusType, int skip, int take);
     }
 }
