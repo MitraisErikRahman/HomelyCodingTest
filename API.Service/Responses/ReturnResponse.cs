@@ -8,6 +8,7 @@ namespace API.Service.Responses
 {
     public class ReturnResponse
     {
+        public int StatusCode { get; set; }
         public string Message { get; set; }
         public string Result { get; set; }
     }
